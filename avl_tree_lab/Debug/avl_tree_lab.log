@@ -1,0 +1,4 @@
+﻿  avl_tree_lab.cpp
+C:\Users\55000\source\repos\avl_tree_lab\avl_tree_lab\avl_tree_lab.cpp(7,1): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+C:\Users\55000\source\repos\avl_tree_lab\avl_tree_lab\AvlTree.h(152): warning C4715: AvlTree<int>::remove: значение возвращается не при всех путях выполнения
+  avl_tree_lab.vcxproj -> C:\Users\55000\source\repos\avl_tree_lab\Debug\avl_tree_lab.exe
