@@ -39,7 +39,7 @@ public:
 
 	int Find(int _key) {
 		node<T>* res = find(data, _key);
-		return res ? res->data : NULL;
+		return res? res->data : NULL;
 	}
 
 	void Print() {
@@ -117,8 +117,8 @@ protected:
 
 	void print(node<T>* p) {
 		if (!p) return;
-		cout << p->key << ": " << p->data << endl;
 		print(p->left);
+		cout << p->key << ": " << p->data << endl;
 		print(p->right);
 	}
 
@@ -127,18 +127,19 @@ protected:
 			return new node<T>(_key, _data);
 		if (_key < p->key)
 			p->left = insert(p->left, _key, _data);
-		else
+		else if (_key > p->key)
 			p->right = insert(p->right, _key, _data);
+		else return p;
 		return balance(p);
 	}
 
 	node<T>* remove(node<T>* p, int _key) {
-		if (!p) return 0;
+		if (p == nullptr) return 0;
 		if (_key < p->key)
 			p->left = remove(p->left, _key);
 		else if (_key > p->key)
 			p->right = remove(p->right, _key);
-		else
+		else 
 		{
 			node<T>* q = p->left;
 			node<T>* r = p->right;
@@ -149,14 +150,19 @@ protected:
 			min->left = q;
 			return balance(min);
 		}
+		return balance(p);
 	}
 
 	node<T>* find(node<T>* p, int _key) {
-		if (p->key == _key) return p;
-		if (!p) return nullptr;
-		if (_key < p->key)
-			return find(p->left, _key);
-		else
-			return find(p->right, _key);
+		if (!p) return NULL;
+		if (_key < p->key) {
+			if (p->left) node<T>* q = find(p->left, _key);
+			else return NULL;
+		}
+		else if (_key > p->key) {
+			if (p->right) node<T>* q = find(p->right, _key);
+			else return NULL;
+		}
+		else return p;
 	}
 };
